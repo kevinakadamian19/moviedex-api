@@ -14,7 +14,7 @@ app.use(cors());
 app.use(function validateBearerToken(req,res,next) {
     const apiToken = process.env.API_TOKEN;
     const authToken = req.get('Authorization');
-    console.log('validating Bearer Token middlware')
+    console.log('validating Bearer Token middleware')
 
     if(!authToken || authToken.split(' ')[1] !== apiToken) {
         return res.status(401).json({error: 'Unauthorized request'})
@@ -22,7 +22,7 @@ app.use(function validateBearerToken(req,res,next) {
     next();
 })
 
-app.get('/movie', function handleMovieSelection(req,res) {
+app.get('/movies', function handleMovieSelection(req,res) {
     let response = MOVIES;
     //sort based on genre
     if(req.query.genre) {
